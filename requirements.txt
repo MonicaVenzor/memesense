@@ -6,3 +6,8 @@ numpy
 pandas
 matplotlib
 seaborn
+
+tensorflow
+opencv-python
+transformers
+scikit-learn
