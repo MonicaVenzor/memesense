@@ -18,7 +18,8 @@ from memesense.params import *
 #    images = preprocess_image(data)
 #    return images
 
-def extract_text(image):
+def extract_text(image_path):
+    image = cv2.imread(image_path)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     ret, thresh1 = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY_INV) #revision de ret con rect (variable) mas abajo
     rect_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (18, 18))
