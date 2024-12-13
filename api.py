@@ -8,6 +8,8 @@ from memesense.preprocess import preprocess_image, preprocess_text
 from memesense.params import *
 from fastapi import HTTPException
 import numpy as np
+from PIL import Image
+import io
 
 app = FastAPI()
 
@@ -41,17 +43,28 @@ async def predict(image: UploadFile = File(...)):
 @app.post('/predict')
 async def predict(image: UploadFile = File(...)):
     # Lista de extensiones permitidas
-    extensions = ['.jpg', '.png']
-    file_ext = os.path.splitext(image.filename)[1].lower()
-
+    extensions = ['.jpg', '.png', '.jpeg']
+    #file_ext = os.path.splitext(image.filename)[1].lower()
+    #print(file_ext)
     # Validar la extensión del archivo
-    if file_ext not in extensions:
-        raise HTTPException(status_code=400, detail="Invalid file type")
+    #if file_ext not in extensions:
+    #    raise HTTPException(status_code=400, detail="Invalid file type")
+    file_bytes = await image.read()
+
+    # Convert the file to an image using PIL
+    image = Image.open(io.BytesIO(file_bytes))
+
+    # Convert the image to a NumPy array
+    image_array = np.array(image)
 
     # Guardar el archivo localmente
-    local_filename = f'imagen{file_ext}'
-    with open(local_filename, 'wb') as f:
-        shutil.copyfileobj(image.file, f)
+    local_filename = f'imagen{extensions[1]}'
+    save_path = image.filename
+    print(save_path)
+
+    # Read the file bytes and save the image
+    with open(local_filename, "wb") as f:
+        f.write(file_bytes)
 
     # Procesar la imagen
     image_proc = preprocess_image(local_filename)
