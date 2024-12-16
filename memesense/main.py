@@ -1,22 +1,7 @@
 # Import
-import os
-import numpy as np
-import pandas as pd
-import tensorflow as tf
-import matplotlib.pyplot as plt
-import seaborn as sns
 import cv2
 import pytesseract
-
-from memesense.data import load_data
-from memesense.preprocess import preprocess_image
-from memesense.load_model import load_model
 from memesense.params import *
-
-
-#def process_data(data):
-#    images = preprocess_image(data)
-#    return images
 
 def extract_text(image_path):
     image = cv2.imread(image_path)
@@ -59,13 +44,3 @@ def extract_text(image_path):
         texto = texto + " " + text
 
     return texto
-
-
-
-def predict(image, model):
-    image_proc = preprocess_image(image)
-    text_proc = extract_text(image)
-
-    prediction = model.predict([image_proc, text_proc])
-
-    return prediction

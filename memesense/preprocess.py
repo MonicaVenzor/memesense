@@ -27,17 +27,7 @@ def preprocess_image(image, target_size=(224, 224)):
         print(f"Image preprocessing error: {e}")
         return None
 
-def preprocess_images_and_labels(df, image_folder):
-    images, labels = [], []
-    for _, row in df.iterrows():
-        image_path = os.path.join(image_folder, row['image_name'])
-        img = preprocess_image(image_path)
-        if img is not None:
-            images.append(img)
-            labels.append(row['overall_sentiment'])
-    return np.array(images), labels
-
-'''def preprocess_text(text):
+def preprocess_text(text):
     try:
         # Ensure text is a list, even if it's a single string
         if isinstance(text, str):
@@ -58,12 +48,4 @@ def preprocess_images_and_labels(df, image_folder):
         return text_data
     except Exception as e:
         print(f"Text preprocessing error: {e}")
-        return None '''
-
-def preprocess_text_bert(text):
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    # Tokenizar el texto
-    max_len = 50
-    text_encodings = tokenizer(text, truncation=True, padding='max_length', max_length=max_len, return_tensors="tf")
-    #print(f"Texto procesado: {text_encodings}")
-    return text_encodings['input_ids'], text_encodings['attention_mask']
+        return None
