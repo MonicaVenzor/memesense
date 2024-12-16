@@ -7,6 +7,12 @@ pandas
 matplotlib
 seaborn
 
+tensorflow
+opencv-python
+transformers
+scikit-learn
 fastapi
 uvicorn
 python-multipart
+colorama
+pytesseract
