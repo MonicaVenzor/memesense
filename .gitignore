@@ -2,3 +2,4 @@ raw_data/
 *.ipynb
 *.keras
 *.h5
+*.png
