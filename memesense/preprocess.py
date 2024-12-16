@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from transformers import BertTokenizer
 
 from memesense.params import *
 
@@ -36,7 +37,7 @@ def preprocess_images_and_labels(df, image_folder):
             labels.append(row['overall_sentiment'])
     return np.array(images), labels
 
-def preprocess_text(text):
+'''def preprocess_text(text):
     try:
         # Ensure text is a list, even if it's a single string
         if isinstance(text, str):
@@ -57,4 +58,12 @@ def preprocess_text(text):
         return text_data
     except Exception as e:
         print(f"Text preprocessing error: {e}")
-        return None
+        return None '''
+
+def preprocess_text_bert(text):
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+    # Tokenizar el texto
+    max_len = 50
+    text_encodings = tokenizer(text, truncation=True, padding='max_length', max_length=max_len, return_tensors="tf")
+    #print(f"Texto procesado: {text_encodings}")
+    return text_encodings['input_ids'], text_encodings['attention_mask']
