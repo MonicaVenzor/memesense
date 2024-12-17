@@ -1,13 +1,13 @@
-pytest
-pylint
-ipdb
-jupyterlab
+#pytest
+#pylint
+#ipdb
+#jupyterlab
 numpy
 pandas
-matplotlib
-seaborn
+#matplotlib
+#seaborn
 
-tensorflow
+#tensorflow
 opencv-python
 transformers
 scikit-learn
