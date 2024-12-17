@@ -11,9 +11,6 @@ from memesense.main import extract_text
 from memesense.preprocess import preprocess_image, preprocess_text_bert
 from memesense.params import *
 
-
-
-
 app = FastAPI()
 
 app.state.model, model_target = load_model_meme()
@@ -84,4 +81,5 @@ async def predict(image: UploadFile = File(...)):
         print(text_proc.shape)
         print(mask_text.shape)
         label_prediction = model.predict([image_proc, text_proc, mask_text])
-        return {'label': float(label_prediction[0].argmax())}
+        print(label_prediction)
+        return {'label': int(label_prediction[0].argmax())}

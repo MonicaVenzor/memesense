@@ -18,11 +18,8 @@ def extract_text(image_path):
     contours, _ = cv2.findContours(dilation, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     # Creating a copy of image
     im2 = image.copy()
-
     #Variable to save the text of the meme
-
     texto = ""
-
     # Looping through the identified contours
     # Then rectangular part is cropped and passed on
     # to pytesseract for extracting text from it
