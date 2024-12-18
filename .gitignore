@@ -3,3 +3,5 @@ raw_data/
 *.keras
 *.h5
 *.png
+.env
+.envrc
