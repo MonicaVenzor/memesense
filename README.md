@@ -50,6 +50,6 @@ memesense/
 ## Team
 
 Built by [Mónica Venzor](https://github.com/MonicaVenzor), 
-[Alina Colman](https://github.com/AlinaColman), and 
-[Gerardo Vargas](https://github.com/GerardoVargas) 
+[Alina Colman](https://github.com/AVColman), and 
+[Gerardo Vargas](https://github.com/jerryvmx92) 
 as the final project of Le Wagon Data Science & AI Bootcamp (Oct–Dec 2024).
